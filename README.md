@@ -8,18 +8,7 @@ The biggest "gotcha" I've ever encounted is how Spark's non-strict evaluation in
 
 **Never use pyspark.sql.functions.drop_duplicates**
 
-Just don't. I know it seems fine. And it might be for a while. But here's an example:
-
-```python
-# Someone queries your Silver table from 3 months ago
-spark.read.format("delta").option("versionAsOf", 45).table("silver.patients")
-
-# Bronze → Silver transformation (BAD)
-silver_df = (bronze_df
-    .drop_duplicates(['patient_id', 'visit_date'])  
-    .write.mode("overwrite").saveAsTable("silver.patients"))
-```
-Delta Lake's whole thing is immutabability and time travel stuff. 
+Just don't. I know it seems fine. And it might be for a while. Delta Lake's whole thing is immutabability and time travel stuff. 
 
 ## The Delta Lake Time Travel Stuff
 
@@ -43,5 +32,6 @@ Generally, metadata columns are added as the table is pushed from bronze to silv
 Now you have a pipeline failure.
 
 ## Solution
-
+```python
 import deterministic_utils as dtmc
+```
