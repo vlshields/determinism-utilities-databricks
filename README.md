@@ -6,13 +6,8 @@
 If you are using databrick chances are you work with highly regulated data. 
 The biggest "gotcha" I've ever encounted is how Spark's non-strict evaluation interacts with the delta lake architecture of databrcks.
 
-#### Never use pyspark.sql.functions.drop_duplicates
-
-Just don't. I know it seems fine. And it might be for a while. Delta Lake's whole thing is immutabability and time travel stuff. 
-
-## The Delta Lake Time Travel Stuff
-
-Time Travel is a fancy way of saying that the Delta Lake architecture allows you to query any historical version of a table, compare outputs across time, and reproduce historical analyses. But time travel only works correctly if your transformations are deterministic, ergo the immutability. 
+If deterministic filtering/subset results are important to your Organizations auditing policies, never use drop_duplicates(). The results will not 
+be deterministic.
 
 ## The Gotcha
 
