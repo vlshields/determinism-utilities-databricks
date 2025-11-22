@@ -1,0 +1,9 @@
+[project]
+name = "determinism-utilities-databricks"
+version = "0.1.1"
+description = "For those who want to contribute. Others can ignore."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pyspark>=4.0.1",
+]

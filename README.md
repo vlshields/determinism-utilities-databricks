@@ -6,7 +6,7 @@
 If you are using databrick chances are you work with highly regulated data. 
 The biggest "gotcha" I've ever encounted is how Spark's non-strict evaluation interacts with the delta lake architecture of databrcks.
 
-**Never use pyspark.sql.functions.drop_duplicates**
+#### Never use pyspark.sql.functions.drop_duplicates
 
 Just don't. I know it seems fine. And it might be for a while. Delta Lake's whole thing is immutabability and time travel stuff. 
 
@@ -29,9 +29,8 @@ Example:
 | P001       | 2024-01-15 | POSITIVE    | awfawf | randomdate3     |
 
 Generally, metadata columns are added as the table is pushed from bronze to silver for the first time. They will not change the next time the pipeline is run, nor will they ever be included in the drop_duplicate() function.
-Now you have a pipeline failure.
+Depending on how your Org sets up their data governance, now you have a pipeline failure.
 
 ## Solution
-```python
-import deterministic_utils as dtmc
-```
+
+Try using the package in this repo. Ill provide examples soon.
