@@ -9,13 +9,7 @@ The biggest "gotcha" I've ever encounted is how Spark's non-strict evaluation in
 If deterministic filtering/subset results are important to your Organization's auditing policies, it's best to avoid the drop_duplicates() function. The results will not 
 be deterministic.
 
-## TLDR
-
-It's not unlikely that to encounter pipelines with extremely strict data governance. An example of a data governance function is provided. Scripts of those kind are used to prevent records from being changed retroactively. You can think of it almost like a git commit log. Audit logs and system columns must also be deterministic. This has caused many pipeline failures in my experience
-If deterministic filtering/subset results are important to your Organization's auditing policies, it's best to avoid the drop_duplicates() function. The results will not 
-be deterministic.
-
-## TLDR
+## Summary
 
 It's not unlikely that to encounter pipelines with extremely strict data governance. An example of a data governance function is provided. Scripts of those kind are used to prevent records from being changed retroactively. You can think of it almost like a git commit log. Audit logs and system columns must also be deterministic. This has caused many pipeline failures in my experience
 and its hard to debug. 
@@ -33,4 +27,5 @@ Depending on how your Org sets up their data governance, now you have a pipeline
 
 ## Solution
 
-In general, you will want to use windowing functions to partition your dataframe. There are some utility functions provided that could be useful. 
+In general, you will want to use windowing functions to partition your dataframe. There are some utility functions provided that could be useful.
+Please see the [examples](https://github.com/vlshields/determinism-utilities-databricks/tree/main/examples) for some ways you might use these utility functions.
