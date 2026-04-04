@@ -5,5 +5,8 @@ description = "For those who want to contribute. Others can ignore."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "jupytext>=1.19.1",
+    "marimo>=0.22.4",
+    "notebook>=7.5.5",
     "pyspark>=4.0.1",
 ]
