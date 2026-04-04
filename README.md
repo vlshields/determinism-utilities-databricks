@@ -12,6 +12,12 @@ be deterministic.
 ## TLDR
 
 It's not unlikely that to encounter pipelines with extremely strict data governance. An example of a data governance function is provided. Scripts of those kind are used to prevent records from being changed retroactively. You can think of it almost like a git commit log. Audit logs and system columns must also be deterministic. This has caused many pipeline failures in my experience
+If deterministic filtering/subset results are important to your Organization's auditing policies, it's best to avoid the drop_duplicates() function. The results will not 
+be deterministic.
+
+## TLDR
+
+It's not unlikely that to encounter pipelines with extremely strict data governance. An example of a data governance function is provided. Scripts of those kind are used to prevent records from being changed retroactively. You can think of it almost like a git commit log. Audit logs and system columns must also be deterministic. This has caused many pipeline failures in my experience
 and its hard to debug. 
 
 Example:
