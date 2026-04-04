@@ -6,18 +6,12 @@
 If you are using databrick chances are you work with highly regulated data. 
 The biggest "gotcha" I've ever encounted is how Spark's non-strict evaluation interacts with the delta lake architecture of databrcks.
 
-#### Never use pyspark.sql.functions.drop_duplicates
+If deterministic filtering/subset results are important to your Organization's auditing policies, it's best to avoid the drop_duplicates() function. The results will not 
+be deterministic.
 
-Just don't. I know it seems fine. And it might be for a while. Delta Lake's whole thing is immutabability and time travel stuff. 
+## TLDR
 
-## The Delta Lake Time Travel Stuff
-
-Time Travel is a fancy way of saying that the Delta Lake architecture allows you to query any historical version of a table, compare outputs across time, and reproduce historical analyses. But time travel only works correctly if your transformations are deterministic, ergo the immutability. 
-
-## The Gotcha
-
-If this all seems obvious so far, good. We haven't gotten to the not so obvious part yet. When I said never use drop_duplicates(), I don't just mean on a subset of data. 
-I mean never use it, even if each row has a unique identifier. Audit logs and system columns must also be deterministic. This has caused many pipeline failures in my experience
+It's not unlikely that to encounter pipelines with extremely strict data governance. An example of a data governance function is provided. Scripts of those kind are used to prevent records from being changed retroactively. You can think of it almost like a git commit log. Audit logs and system columns must also be deterministic. This has caused many pipeline failures in my experience
 and its hard to debug. 
 
 Example:
@@ -33,4 +27,4 @@ Depending on how your Org sets up their data governance, now you have a pipeline
 
 ## Solution
 
-Try using the package in this repo. Ill provide examples soon.
+In general, you will want to use windowing functions to partition your dataframe. There are some utility functions provided that could be useful. 
