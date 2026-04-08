@@ -28,4 +28,4 @@ Depending on how your Org sets up their data governance, now you have a pipeline
 ## Solution
 
 In general, you will want to use windowing functions to partition your dataframe. There are some utility functions provided that could be useful.
-Please see the [examples](https://github.com/vlshields/determinism-utilities-databricks/tree/main/examples) for some ways you might use these utility functions.
+Please see the [this static notebook](https://static.marimo.app/static/pyspark-databricks-determinism-j0hf) for some ways you might use these utility functions.
